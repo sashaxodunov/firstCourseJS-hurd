@@ -1,16 +1,9 @@
-let title;
-let screens;
-let screenPrice;
-let rollback;
-let fullPrice;
-let adaptive;
-
-title = "firstCourseJS";
-screens = "Простые, Сложные, Интерактивные";
-screenPrice = 45467;
-rollback = 45;
-fullPrice = 64486846468;
-adaptive = true;
+let title = "firstCourseJS";
+let screens = "Простые, Сложные, Интерактивные";
+let screenPrice = 45467;
+let rollback = 45;
+let fullPrice = 64486846468;
+let adaptive = true;
 
 console.log(typeof title);
 console.log(typeof fullPrice);

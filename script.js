@@ -20,7 +20,7 @@ screens = prompt(
   "Какие типы экранов нужно разработать?",
   "Простые, Сложные, Интерактивные",
 );
-screenPrice = prompt("Сколько будет стоить данная работы", "12000");
+screenPrice = +prompt("Сколько будет стоить данная работы", "12000");
 const answer = prompt("Нужен ли адаптив на сайте? (да / нет)");
 if (answer && answer.toLowerCase() === "да") {
   adaptive = true;
@@ -31,16 +31,17 @@ if (answer && answer.toLowerCase() === "да") {
 }
 
 const service1 = prompt("Какой дополнительный тип услуги нужен?");
-const servicePrice1 = prompt("Сколько это будет стоить?");
+const servicePrice1 = +prompt("Сколько это будет стоить?");
 
 const service2 = prompt("Какой дополнительный тип услуги нужен?");
-const servicePrice2 = prompt("Сколько это будет стоить?");
+const servicePrice2 = +prompt("Сколько это будет стоить?");
 
-fullPrice = Number(screenPrice) + Number(servicePrice1) + Number(servicePrice2);
+fullPrice = screenPrice + servicePrice1 + servicePrice2;
 const middlemanPercent = 10;
-const servicePercentPrice = Math.ceil(
-  fullPrice - (fullPrice * middlemanPercent) / 100,
-);
+let getServicePercentPrices = function () {
+  return Math.ceil(fullPrice - (fullPrice * middlemanPercent) / 100);
+};
+let servicePercentPrice = getServicePercentPrices();
 console.log(servicePercentPrice);
 
 if (fullPrice > 30000) {
@@ -52,3 +53,22 @@ if (fullPrice > 30000) {
 } else if (fullPrise <= 0) {
   console.log("что то пошло не так");
 }
+
+// Функция возвращает сумму всех дополнительных услуг
+let allServicePrices = function getAllServicePrices() {
+  return servicePrice1 + servicePrice2;
+};
+console.log(allServicePrices());
+
+// Функция возвращает сумму стоимости верстки и стоимости дополнительных услуг
+function getFullPrice() {
+  return (fullPrice = screenPrice + allServicePrices());
+}
+console.log(getFullPrice());
+
+// Функция возвращает title меняя его таким образом: первый символ с большой буквы, остальные с маленькой".
+let getTitle = function () {
+  title = title.trim();
+  return title[0].toUpperCase() + title.slice(1).toLowerCase();
+};
+console.log(getTitle());

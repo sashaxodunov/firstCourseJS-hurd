@@ -36,6 +36,12 @@ function getFullPrice() {
   return (fullPrice = screenPrice + allServicePrices());
 }
 
+// Функция возвращает title меняя его таким образом: первый символ с большой буквы, остальные с маленькой".
+let getTitle = function () {
+  title = title.trim();
+  return title[0].toUpperCase() + title.slice(1).toLowerCase();
+};
+
 showTypeOf(title);
 showTypeOf(screenPrice);
 showTypeOf(adaptive);
@@ -43,6 +49,7 @@ showTypeOf(adaptive);
 console.log(getRollbackMessage(fullPrice));
 console.log(allServicePrices());
 console.log(getFullPrice());
+console.log(getTitle());
 
 console.log(typeof title);
 console.log(typeof screenPrice);

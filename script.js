@@ -8,7 +8,6 @@ let service2 = prompt("Какой дополнительный тип услуг
 let servicePrice2 = +prompt("Сколько это будет стоить?");
 let rollback = 10;
 let fullPrice = screenPrice + servicePrice1 + servicePrice2;
-let servicePercentPrice = fullPrice - fullPrice * (rollback / 100);
 
 const showTypeOf = function (variable) {
   console.log(variable, typeof variable);
@@ -27,7 +26,7 @@ const getRollbackMessage = function (price) {
 };
 
 // Функция возвращает сумму всех дополнительных услуг
-let allServicePrices = function getAllServicePrices() {
+const allServicePrices = function getAllServicePrices() {
   return servicePrice1 + servicePrice2;
 };
 
@@ -37,9 +36,14 @@ function getFullPrice() {
 }
 
 // Функция возвращает title меняя его таким образом: первый символ с большой буквы, остальные с маленькой".
-let getTitle = function () {
+function getTitle() {
   title = title.trim();
   return title[0].toUpperCase() + title.slice(1).toLowerCase();
+}
+
+// Функция возвращает итоговую стоимость за вычетом процента отката.
+const servicePercentPrice = function getServicePercentPrices() {
+  return fullPrice - fullPrice * (rollback / 100);
 };
 
 showTypeOf(title);
@@ -50,12 +54,12 @@ console.log(getRollbackMessage(fullPrice));
 console.log(allServicePrices());
 console.log(getFullPrice());
 console.log(getTitle());
+console.log(servicePercentPrice());
 
 console.log(typeof title);
 console.log(typeof screenPrice);
 console.log(typeof adaptive);
 
 console.log(screens.length);
-console.log(servicePercentPrice);
 
 console.log("Стоимость верстки экранов " + screenPrice + " рублей");

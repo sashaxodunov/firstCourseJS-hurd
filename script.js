@@ -1,17 +1,21 @@
-let num = 266219;
+/*
+ * Урок 4
+ * Функции, анонимные функции, callback - функции, чистые функции
+ * Усложненное задание
+ */
 
-const digits = String(num).split("").map(Number); // Перевел в строку, разбил на символы, преобразовал в цифры
-console.log(digits);
+const checkingString = function (str) {
+  if (typeof str === "string") {
+    str = str.trim().slice(0, 30) + "...";
+  } else {
+    console.log("В качестве аргумента передана не строка");
+    return "";
+  }
+  return str;
+};
 
-let result = 1;
-
-for (let i = 0; i < digits.length; i++) {
-  result *= digits[i];
-}
-console.log(result);
-
-result = result ** 3;
-console.log(result);
-
-const firstTwo = String(result).slice(0, 2);
-console.log(Number(firstTwo));
+console.log(
+  checkingString(
+    "  Привет мир. Эта функция принимает 1 аргумент в качестве строки обрезает пробелы вначале и в конце и выводит только 30 символов заканчивая ...         ",
+  ),
+);

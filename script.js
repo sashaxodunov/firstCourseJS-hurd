@@ -50,16 +50,7 @@ showTypeOf(title);
 showTypeOf(screenPrice);
 showTypeOf(adaptive);
 
+console.log(screens);
+
 console.log(getRollbackMessage(fullPrice));
-console.log(allServicePrices());
-console.log(getFullPrice());
-console.log(getTitle());
 console.log(servicePercentPrice());
-
-console.log(typeof title);
-console.log(typeof screenPrice);
-console.log(typeof adaptive);
-
-console.log(screens.length);
-
-console.log("Стоимость верстки экранов " + screenPrice + " рублей");

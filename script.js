@@ -26,11 +26,17 @@ const getRollbackMessage = function (price) {
   }
 };
 
+// Функция возвращает сумму всех дополнительных услуг
+let allServicePrices = function getAllServicePrices() {
+  return servicePrice1 + servicePrice2;
+};
+
 showTypeOf(title);
 showTypeOf(screenPrice);
 showTypeOf(adaptive);
 
 console.log(getRollbackMessage(fullPrice));
+console.log(allServicePrices());
 
 console.log(typeof title);
 console.log(typeof screenPrice);

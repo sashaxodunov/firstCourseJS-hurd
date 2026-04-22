@@ -31,12 +31,18 @@ let allServicePrices = function getAllServicePrices() {
   return servicePrice1 + servicePrice2;
 };
 
+// Функция возвращает сумму стоимости верстки и стоимости дополнительных услуг
+function getFullPrice() {
+  return (fullPrice = screenPrice + allServicePrices());
+}
+
 showTypeOf(title);
 showTypeOf(screenPrice);
 showTypeOf(adaptive);
 
 console.log(getRollbackMessage(fullPrice));
 console.log(allServicePrices());
+console.log(getFullPrice());
 
 console.log(typeof title);
 console.log(typeof screenPrice);

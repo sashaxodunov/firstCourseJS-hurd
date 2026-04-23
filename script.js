@@ -34,8 +34,18 @@ const getAllServicePrices = function () {
     } else if (i === 1) {
       service2 = prompt("Какой дополнительный тип услуги нужен?");
     }
+    let price;
+    while (true) {
+      price = prompt("Сколько это будет стоить?");
 
-    sum += +prompt("Сколько это будет стоить?");
+      if (price !== null && price.trim() !== "" && !isNaN(price)) {
+        price = Number(price);
+        break;
+      } else {
+        alert("Пожалуйста, введите корректное число!");
+      }
+    }
+    sum += price;
   }
   return sum;
 };

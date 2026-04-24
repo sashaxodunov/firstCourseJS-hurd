@@ -1,17 +1,5 @@
-let num = 266219;
+const arr = ["4168464", "6488464", "14648648", "25463854566", "4358463854", "6541641", "254964684"];
+// получаем новый массив со строками начинающимися с 2 или 4
+const filter = arr.filter(s => s.startsWith("2") || s.startsWith("4"));
 
-const digits = String(num).split("").map(Number); // Перевел в строку, разбил на символы, преобразовал в цифры
-console.log(digits);
-
-let result = 1;
-
-for (let i = 0; i < digits.length; i++) {
-  result *= digits[i];
-}
-console.log(result);
-
-result = result ** 3;
-console.log(result);
-
-const firstTwo = String(result).slice(0, 2);
-console.log(Number(firstTwo));
+console.log(filter); // выводим новый массив

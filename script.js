@@ -2,10 +2,12 @@ let title;
 let screens;
 let screenPrice;
 let adaptive;
+
 let rollback = 10;
 let allServicePrices;
 let fullPrice;
 let servicePercentPrice;
+
 let service1;
 let service2;
 
@@ -88,9 +90,12 @@ fullPrice = getFullPrice();
 servicePercentPrice = getServicePercentPrices();
 title = getTitle();
 
-showTypeOf(title);
-showTypeOf(screenPrice);
-showTypeOf(adaptive);
+showTypeOf(title);               // string
+showTypeOf(screenPrice);         // number
+showTypeOf(adaptive);            // boolean
+showTypeOf(allServicePrices);    // number
+showTypeOf(fullPrice);           // number
+showTypeOf(servicePercentPrice); // number
 
 console.log("allServicePrices", allServicePrices);
 

@@ -95,7 +95,7 @@ showTypeOf(screenPrice);         // number
 showTypeOf(adaptive);            // boolean
 showTypeOf(allServicePrices);    // number
 showTypeOf(fullPrice);           // number
-showTypeOf(servicePercentPrice); // number
+showTypeOf(servicePercentPrice); 
 
 console.log("allServicePrices", allServicePrices);
 

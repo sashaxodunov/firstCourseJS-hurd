@@ -11,17 +11,45 @@ let servicePercentPrice;
 let service1;
 let service2;
 
-const isNumber = function (num) {
-  return !isNaN(parseFloat(num)) && isFinite(num);
+// const isNumber = function (num) {
+//   return !isNaN(parseFloat(num)) && isFinite(num);
+// };
+
+const toFiniteNumberOrNull = (value) => {
+  if (value === null) return null;             
+  if (typeof value !== "string") value = String(value);
+
+  const trimmed = value.trim();
+  if (trimmed === "") return null;
+
+  const num = Number(trimmed);
+  return Number.isFinite(num) ? num : null;
 };
 
 const asking = function () {
   title = prompt("Как называется ваш проект?", "Калькулятор верстки");
   screens = prompt("Какие типы экранов нужно разработать?", "Простые, Сложные");
 
-  do {
-    screenPrice = prompt("Сколько будет стоить данная работы?");
-  } while (!isNumber(screenPrice));
+//   do {
+//     screenPrice = prompt("Сколько будет стоить данная работы?");
+//   } while (!isNumber(screenPrice));
+
+while (true) {
+  const input = prompt("Сколько будет стоить данная работы?");
+  const parsed = toFiniteNumberOrNull(input);
+
+  if (input === null) {         // именно отмена
+    screenPrice = alert("Введите корректное число");
+    continue;
+  }
+
+  if (parsed !== null) {        // корректное число
+    screenPrice = parsed;       // тут гарантированно number
+    break;
+  }
+
+  alert("Введите корректное число");
+}
 
   adaptive = confirm("Нужен ли адаптив на сайте?");
 };

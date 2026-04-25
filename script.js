@@ -60,15 +60,27 @@ const appData = {
         price = prompt("Сколько это будет стоить?");
       } while (!appData.isNumber(price));
 
-      appData.services[name] = +price;
+      const uniqueName = appData.getUniqueServiceName(name);
+      appData.services[uniqueName] = +price;
     }
 
     appData.adaptive = confirm("Нужен ли адаптив на сайте?");
   },
-  addPrices: function () {
-    for (let screen of appData.screens) {
-      appData.screenPrice += +screen.price;
+  getUniqueServiceName: function (name) {
+    let newName = name;
+    let i = 1;
+
+    while (appData.services.hasOwnProperty(newName)) {
+      newName = `${name}_${i}`;
+      i++;
     }
+
+    return newName;
+  },
+  addPrices: function () {
+    appData.screenPrice = appData.screens.reduce((sum, screen) => {
+      return sum + +screen.price;
+    }, 0);
     for (let key in appData.services) {
       appData.allServicePrices += appData.services[key];
     }

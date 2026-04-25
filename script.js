@@ -23,6 +23,12 @@ const appData = {
   logger: function () {
     console.log(appData.fullPrice);
     console.log(appData.servicePercentPrice);
+
+    for (let key in appData) {
+      if (typeof appData[key] !== "function") {
+        console.log(key + ": " + appData[key]);
+      }
+    }
   },
   asking: function () {
     appData.title = prompt("Как называется ваш проект?", "Калькулятор верстки");

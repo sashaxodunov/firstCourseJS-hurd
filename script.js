@@ -1,27 +1,33 @@
-let title;
-let screens;
-let screenPrice;
-let adaptive;
-let rollback = 10;
-let allServicePrices;
-let fullPrice;
-let servicePercentPrice;
-let service1;
-let service2;
+"use strict";
+
+const appData = {
+  title: "",
+  screens: "",
+  screenPrice: 0,
+  adaptive: true,
+  rollback: 10,
+  allServicePrices: 0,
+  fullPrice: 0,
+  servicePercentPrice: 0,
+  service1: "",
+  service2: "",
+  asking: function () {
+    appData.title = prompt("Как называется ваш проект?", "Калькулятор верстки");
+    appData.screens = prompt(
+      "Какие типы экранов нужно разработать?",
+      "Простые, Сложные",
+    );
+
+    do {
+      appData.screenPrice = prompt("Сколько будет стоить данная работы?");
+    } while (!isNumber(appData.screenPrice));
+
+    appData.adaptive = confirm("Нужен ли адаптив на сайте?");
+  },
+};
 
 const isNumber = function (num) {
   return !isNaN(parseFloat(num)) && isFinite(num);
-};
-
-const asking = function () {
-  title = prompt("Как называется ваш проект?", "Калькулятор верстки");
-  screens = prompt("Какие типы экранов нужно разработать?", "Простые, Сложные");
-
-  do {
-    screenPrice = prompt("Сколько будет стоить данная работы?");
-  } while (!isNumber(screenPrice));
-
-  adaptive = confirm("Нужен ли адаптив на сайте?");
 };
 
 // Функция возвращает сумму всех дополнительных услуг
@@ -29,45 +35,35 @@ const getAllServicePrices = function () {
   let sum = 0;
 
   for (let i = 0; i < 2; i++) {
-    if (i === 0) {
-      service1 = prompt("Какой дополнительный тип услуги нужен?");
-    } else if (i === 1) {
-      service2 = prompt("Какой дополнительный тип услуги нужен?");
-    }
-    let price;
-    while (true) {
-      price = prompt("Сколько это будет стоить?");
+    let price = 0;
 
-      if (price !== null && price.trim() !== "" && !isNaN(price)) {
-        price = Number(price);
-        break;
-      } else {
-        alert("Пожалуйста, введите корректное число!");
-      }
+    if (i === 0) {
+      appData.service1 = prompt("Какой дополнительный тип услуги нужен?");
+    } else if (i === 1) {
+      appData.service2 = prompt("Какой дополнительный тип услуги нужен?");
     }
-    sum += price;
+    do {
+      price = prompt("Сколько это будет стоить?");
+    } while (!isNumber(price));
+    sum += +price;
   }
   return sum;
 };
 
-const showTypeOf = function (variable) {
-  console.log(variable, typeof variable);
-};
-
 // Функция возвращает сумму стоимости верстки и стоимости дополнительных услуг
 const getFullPrice = function () {
-  return screenPrice + allServicePrices;
+  return +appData.screenPrice + appData.allServicePrices;
 };
 
 // Функция возвращает итоговую стоимость за вычетом процента отката.
 const getServicePercentPrices = function () {
-  return fullPrice - fullPrice * (rollback / 100);
+  return appData.fullPrice - appData.fullPrice * (appData.rollback / 100);
 };
 
 // Функция возвращает title меняя его таким образом: первый символ с большой буквы, остальные с маленькой".
 const getTitle = function () {
-  title = title.trim();
-  return title[0].toUpperCase() + title.slice(1).toLowerCase();
+  appData.title = appData.title.trim();
+  return appData.title[0].toUpperCase() + appData.title.slice(1).toLowerCase();
 };
 
 const getRollbackMessage = function (price) {
@@ -82,30 +78,11 @@ const getRollbackMessage = function (price) {
   }
 };
 
-asking();
-allServicePrices = getAllServicePrices();
-fullPrice = getFullPrice();
-servicePercentPrice = getServicePercentPrices();
-title = getTitle();
+appData.asking();
+appData.allServicePrices = getAllServicePrices();
+appData.fullPrice = getFullPrice();
+appData.servicePercentPrice = getServicePercentPrices();
+appData.title = getTitle();
 
-showTypeOf(title);
-showTypeOf(screenPrice);
-showTypeOf(adaptive);
-
-console.log("allServicePrices", allServicePrices);
-
-console.log(getRollbackMessage(fullPrice));
-console.log(typeof title);
-console.log(typeof screenPrice);
-console.log(typeof adaptive);
-
-console.log(screens.length);
-console.log(servicePercentPrice);
-
-console.log(
-  "Стоимость верстки экранов " +
-    screenPrice +
-    " юани и Стоимость разработки сайта " +
-    fullPrice +
-    " юани",
-);
+console.log(appData.fullPrice);
+console.log(appData.servicePercentPrice);

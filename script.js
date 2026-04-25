@@ -1,17 +1,38 @@
-let num = 266219;
+"use strict";
 
-const digits = String(num).split("").map(Number); // Перевел в строку, разбил на символы, преобразовал в цифры
-console.log(digits);
+const week = [
+  "Понедельник",
+  "Вторник",
+  "Среда",
+  "Четверг",
+  "Пятница",
+  "Суббота",
+  "Воскресенье",
+];
 
-let result = 1;
+week.forEach(function (item) {
+  console.log(item);
+});
 
-for (let i = 0; i < digits.length; i++) {
-  result *= digits[i];
+const today = new Date().getDay();
+
+const currentDayIndex = today === 0 ? 6 : today - 1;
+
+for (let i = 0; i < week.length; i++) {
+  const dayText = week[i];
+  let style = "";
+
+  // выходные (суббота и воскресенье)
+  if (i === 5 || i === 6) {
+    style += "font-style: italic;";
+  }
+
+  // текущий день
+  if (i === currentDayIndex) {
+    style += "font-weight: bold;";
+  }
+
+  if (style) {
+    console.log(`%c${dayText}`, style);
+  }
 }
-console.log(result);
-
-result = result ** 3;
-console.log(result);
-
-const firstTwo = String(result).slice(0, 2);
-console.log(Number(firstTwo));

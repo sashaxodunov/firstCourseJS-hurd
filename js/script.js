@@ -8,7 +8,8 @@ const otherItemsPercent = document.querySelectorAll(".other-items.percent");
 const otherItemsNumber = document.querySelectorAll(".other-items.number");
 const inputTypeRange = document.querySelector('.rollback input[type="range"]');
 const spanRangeValue = document.querySelector(".rollback .range-value");
-console.log(spanRangeValue);
+const totalInput = Array.from(document.getElementsByClassName("total-input"));
+console.log(totalInput);
 
 // const appData = {
 //   title: "",

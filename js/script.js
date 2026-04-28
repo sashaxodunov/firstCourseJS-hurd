@@ -1,4 +1,7 @@
 "use strict";
+const title = document.getElementsByTagName("h1")[0];
+
+console.log(h1);
 
 const appData = {
   title: "",

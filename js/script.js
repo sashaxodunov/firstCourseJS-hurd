@@ -7,7 +7,8 @@ const plusBtn = document.querySelector(".screen-btn"); // кнопка +
 const otherItemsPercent = document.querySelectorAll(".other-items.percent");
 const otherItemsNumber = document.querySelectorAll(".other-items.number");
 const inputTypeRange = document.querySelector('.rollback input[type="range"]');
-console.log(inputTypeRange);
+const spanRangeValue = document.querySelector(".rollback .range-value");
+console.log(spanRangeValue);
 
 // const appData = {
 //   title: "",

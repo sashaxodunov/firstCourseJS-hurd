@@ -1,7 +1,8 @@
 "use strict";
 const title = document.getElementsByTagName("h1")[0];
-
-console.log(h1);
+const btns = document.getElementsByClassName("handler_btn");
+const calcBtn = btns[0]; // "Рассчитать"
+const resetBtn = btns[1]; // "Сброс"
 
 const appData = {
   title: "",

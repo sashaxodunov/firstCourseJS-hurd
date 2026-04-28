@@ -6,8 +6,8 @@ const resetBtn = btns[1]; // "Сброс"
 const plusBtn = document.querySelector(".screen-btn"); // кнопка +
 const otherItemsPercent = document.querySelectorAll(".other-items.percent");
 const otherItemsNumber = document.querySelectorAll(".other-items.number");
-console.log(otherItemsPercent);
-console.log(otherItemsNumber);
+const inputTypeRange = document.querySelector('.rollback input[type="range"]');
+console.log(inputTypeRange);
 
 // const appData = {
 //   title: "",

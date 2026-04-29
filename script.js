@@ -7,3 +7,8 @@ books[2].before(books[5]);
 document.body.style.backgroundImage = "url('image/you-dont-know-js.jpg')";
 
 console.log(books);
+
+const title = document.querySelectorAll("h2");
+title[2].innerHTML = "<a>Книга 3. this и Прототипы Объектов</a>";
+
+console.log(title);

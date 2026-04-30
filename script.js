@@ -13,7 +13,7 @@ document.body.style.backgroundImage = "url('image/you-dont-know-js.jpg')";
 
 // console.log(books);
 
-title[2].innerHTML = "<a>Книга 3. this и Прототипы Объектов</a>";
+title[4].innerHTML = "<a>Книга 3. this и Прототипы Объектов</a>";
 
 adv[0].remove();
 
@@ -27,8 +27,25 @@ book5[1].after(book5[9]);
 book5[4].after(book5[2]);
 book5[7].after(book5[5]);
 
-console.log(book2);
-console.log(book5);
+const book6 = books[2]; // индекс 2 — это 6-я книга
+
+// находим список глав
+const list = book6.querySelector("ul");
+
+// создаём новую главу
+const newChapter = document.createElement("li");
+newChapter.textContent = "Глава 8: За пределами ES6";
+
+// находим "Приложение A"
+const appendix = Array.from(list.children).find((li) =>
+  li.textContent.includes("Приложение A"),
+);
+
+// вставляем перед приложением
+list.insertBefore(newChapter, appendix);
+
+// console.log(book2);
+// console.log(book5);
 
 // console.log(title);
 // console.log(adv);

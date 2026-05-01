@@ -3,7 +3,7 @@ const headerInput = document.querySelector(".header-input");
 const todoList = document.querySelector(".todo-list");
 const todoCompleted = document.querySelector(".todo-completed");
 
-const toDoData = [];
+const toDoData = JSON.parse(localStorage.getItem("todo")) || [];
 
 const render = function () {
   todoList.innerHTML = "";
@@ -40,6 +40,8 @@ const render = function () {
       render();
     });
   });
+
+  localStorage.setItem("todo", JSON.stringify(toDoData));
 };
 
 todoControl.addEventListener("submit", function (event) {
@@ -58,3 +60,5 @@ todoControl.addEventListener("submit", function (event) {
 
   render();
 });
+
+render();

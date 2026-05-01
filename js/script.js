@@ -62,6 +62,8 @@ const appData = {
   showResult: function () {
     total.value = appData.screenPrice;
 
+    totalCount.value = appData.totalScreensCount;
+
     totalCountOther.value =
       appData.servicePricesPercent + appData.servicePricesNumber;
 
@@ -77,11 +79,13 @@ const appData = {
       const select = screen.querySelector("select");
       const input = screen.querySelector("input");
       const selectName = select.options[select.selectedIndex].textContent;
+      const count = +input.value;
 
       appData.screens.push({
         id: index,
         name: selectName,
-        price: +select.value * +input.value,
+        price: +select.value * count,
+        count: count,
       });
     });
     console.log(appData.screens);
@@ -144,8 +148,11 @@ const appData = {
   },
 
   addPrices: function () {
+    let totalScreensCount = 0;
+
     for (let screen of appData.screens) {
       appData.screenPrice += +screen.price;
+      totalScreensCount += screen.count;
     }
 
     for (let key in appData.servicesNumber) {
@@ -164,6 +171,8 @@ const appData = {
 
     appData.servicePercentPrice =
       appData.fullPrice - appData.fullPrice * (appData.rollback / 100);
+
+    appData.totalScreensCount = totalScreensCount;
   },
 
   checkInputs: function () {

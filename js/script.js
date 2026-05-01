@@ -44,9 +44,13 @@ const appData = {
     document.title = title.textContent;
   },
   start: function () {
+    if (!appData.checkInputs()) {
+      alert("Заполните все экраны корректно");
+      return;
+    }
+
     appData.addScreens();
     appData.addServices();
-
     appData.addPrices();
     // appData.getServicePercentPrices();
 
@@ -142,6 +146,27 @@ const appData = {
   getServicePercentPrices: function () {
     appData.servicePercentPrice =
       appData.fullPrice - appData.fullPrice * (appData.rollback / 100);
+  },
+  checkInputs: function () {
+    screens = document.querySelectorAll(".screen");
+
+    let isValid = true;
+
+    screens.forEach((screen) => {
+      const select = screen.querySelector("select");
+      const input = screen.querySelector("input");
+
+      // если не выбран тип или не введено количество
+      if (
+        select.value === "" ||
+        input.value.trim() === "" ||
+        +input.value <= 0
+      ) {
+        isValid = false;
+      }
+    });
+
+    return isValid;
   },
 
   getRollbackMessage: function (price) {

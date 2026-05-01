@@ -197,17 +197,6 @@ const appData = {
     return isValid;
   },
 
-  getRollbackMessage: function (price) {
-    if (price > 30000) {
-      return "Даем скидку в 10%";
-    } else if (price >= 15000 && price <= 30000) {
-      return "Даем скидку 5%";
-    } else if (price < 15000 && price > 0) {
-      return "Скидка не предусмотрена";
-    } else if (price <= 0) {
-      return "что то пошло не так";
-    }
-  },
   logger: function () {
     console.log(appData.fullPrice);
     console.log(appData.servicePercentPrice);

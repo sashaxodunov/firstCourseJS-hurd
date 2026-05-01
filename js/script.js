@@ -105,10 +105,26 @@ const appData = {
     });
   },
 
+  init: function () {
+    appData.addTitle();
+
+    startBtn.addEventListener("click", appData.start);
+    buttonPlus.addEventListener("click", appData.addScreenBlock);
+
+    inputRange.addEventListener("input", appData.changeRollback);
+  },
+
   addScreenBlock: function () {
     const cloneScreen = screens[0].cloneNode(true);
 
     screens[screens.length - 1].after(cloneScreen);
+  },
+
+  changeRollback: function () {
+    const value = inputRange.value;
+
+    inputRangeValue.textContent = value; // обновляем span
+    appData.rollback = +value; // сохраняем в объект (число!)
   },
 
   getUniqueServiceName: function (name) {

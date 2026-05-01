@@ -37,8 +37,11 @@ const render = function () {
 todoControl.addEventListener("submit", function (event) {
   event.preventDefault();
 
+  const value = headerInput.value.trim();
+  if (!value) return;
+
   const newToDo = {
-    text: headerInput.value,
+    text: value,
     completed: false,
   };
 

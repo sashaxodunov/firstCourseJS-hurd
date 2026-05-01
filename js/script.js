@@ -27,6 +27,14 @@ const render = function () {
       todoList.append(li);
     }
 
+    li.querySelector(".todo-remove").addEventListener("click", function () {
+      const index = toDoData.indexOf(item);
+      if (index > -1) {
+        toDoData.splice(index, 1);
+        render();
+      }
+    });
+
     li.querySelector(".todo-complete").addEventListener("click", function () {
       item.completed = !item.completed;
       render();

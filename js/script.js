@@ -61,9 +61,13 @@ const appData = {
 
   showResult: function () {
     total.value = appData.screenPrice;
+
     totalCountOther.value =
       appData.servicePricesPercent + appData.servicePricesNumber;
+
     fullTotalCount.value = appData.fullPrice;
+
+    totalCountRollback.value = appData.servicePercentPrice;
   },
 
   addScreens: function (screen, index) {
@@ -157,12 +161,11 @@ const appData = {
       +appData.screenPrice +
       appData.servicePricesNumber +
       appData.servicePricesPercent;
-  },
 
-  getServicePercentPrices: function () {
     appData.servicePercentPrice =
       appData.fullPrice - appData.fullPrice * (appData.rollback / 100);
   },
+
   checkInputs: function () {
     screens = document.querySelectorAll(".screen");
 

@@ -34,6 +34,7 @@ const appData = {
   servicePercentPrice: 0,
   servicesPercent: {},
   servicesNumber: {},
+  isCalculated: false,
   init: function () {
     appData.addTitle();
 
@@ -53,7 +54,7 @@ const appData = {
     appData.addServices();
     appData.addPrices();
     // appData.getServicePercentPrices();
-
+    appData.isCalculated = true;
     // appData.logger();
     console.log(appData);
     appData.showResult();
@@ -133,6 +134,13 @@ const appData = {
 
     inputRangeValue.textContent = value; // обновляем span
     appData.rollback = +value; // сохраняем в объект (число!)
+
+    if (appData.isCalculated) {
+      appData.servicePercentPrice =
+        appData.fullPrice - appData.fullPrice * (appData.rollback / 100);
+
+      totalCountRollback.value = appData.servicePercentPrice;
+    }
   },
 
   getUniqueServiceName: function (name) {

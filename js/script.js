@@ -17,6 +17,11 @@ const totalCountOther = document.getElementsByClassName("total-input")[2];
 const fullTotalCount = document.getElementsByClassName("total-input")[3];
 const totalCountRollback = document.getElementsByClassName("total-input")[4];
 
+const cmsCheckbox = document.getElementById("cms-open");
+const cmsBlock = document.querySelector(".hidden-cms-variants");
+const cmsSelect = cmsBlock.querySelector("select");
+const cmsInput = cmsBlock.querySelector(".main-controls__input input");
+
 let screens = document.querySelectorAll(".screen");
 
 const appData = {
@@ -47,8 +52,6 @@ const appData = {
     cmsCheckbox.addEventListener("change", function () {
       cmsBlock.style.display = this.checked ? "flex" : "none";
     });
-
-    const cmsBlock = document.querySelector(".hidden-cms-variants");
 
     cmsBlock.addEventListener("change", function (e) {
       if (e.target.tagName === "SELECT") {
@@ -197,6 +200,13 @@ const appData = {
       this.fullPrice - this.fullPrice * (this.rollback / 100);
 
     this.totalScreensCount = totalScreensCount;
+
+    if (cmsCheckbox.checked && cmsSelect.value) {
+      const cmsPercent = +cmsSelect.value;
+
+      const cmsPrice = this.fullPrice * (cmsPercent / 100);
+      this.fullPrice += cmsPrice;
+    }
   },
 
   checkInputs: function () {
@@ -252,6 +262,23 @@ const appData = {
         screen.remove();
       }
     });
+
+    // сброс checkbox
+    cmsCheckbox.checked = false;
+
+    // скрытие блока
+    cmsBlock.style.display = "none";
+
+    // сброс select
+    if (cmsSelect) {
+      cmsSelect.selectedIndex = 0;
+    }
+
+    // сброс дополнительного input (если "other")
+    if (cmsInput) {
+      cmsInput.value = "";
+      cmsInput.parentElement.style.display = "none";
+    }
 
     // 3. Очистка чекбоксов и полей услуг
     otherItemsPercent.forEach((item) => {

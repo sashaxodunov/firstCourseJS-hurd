@@ -10,9 +10,7 @@ const inputRangeValue = document.querySelector(".rollback .range-value");
 
 const startBtn = document.getElementsByClassName("handler_btn")[0];
 const resetBtn = document.getElementsByClassName("handler_btn")[1];
-// const calcBtn = btns[0]; // "Рассчитать"
-// const resetBtn = btns[1]; // "Сброс"
-// const plusBtn = document.querySelector(".screen-btn"); // кнопка +
+
 const total = document.getElementsByClassName("total-input")[0];
 const totalCount = document.getElementsByClassName("total-input")[1];
 const totalCountOther = document.getElementsByClassName("total-input")[2];

@@ -36,9 +36,10 @@ const appData = {
   init: function () {
     this.addTitle();
 
-    startBtn.addEventListener("click", this.start.bind(this));
-    buttonPlus.addEventListener("click", this.addScreenBlock.bind(this));
-    inputRange.addEventListener("input", this.changeRollback.bind(this));
+    startBtn.addEventListener("click", () => this.start());
+    buttonPlus.addEventListener("click", () => this.addScreenBlock());
+    inputRange.addEventListener("input", () => this.changeRollback());
+    resetBtn.addEventListener("click", () => this.reset());
   },
 
   addTitle: function () {
@@ -58,6 +59,21 @@ const appData = {
 
     console.log(this);
     this.showResult();
+
+    // Блокируем все select и input[type=text]
+    const allInputs = document.querySelectorAll(
+      ".screen select, .screen input[type=text]",
+    );
+
+    allInputs.forEach((item) => {
+      item.disabled = true;
+    });
+
+    // скрываем кнопку Рассчитать
+    startBtn.style.display = "none";
+
+    // показываем кнопку Сброс
+    resetBtn.style.display = "block";
   },
 
   showResult: function () {
@@ -176,6 +192,67 @@ const appData = {
     });
 
     return isValid;
+  },
+
+  reset: function () {
+    // 1. Очистка данных объекта
+    this.screens = [];
+    this.screenPrice = 0;
+    this.servicePricesPercent = 0;
+    this.servicePricesNumber = 0;
+    this.fullPrice = 0;
+    this.servicePercentPrice = 0;
+    this.servicesPercent = {};
+    this.servicesNumber = {};
+    this.totalScreensCount = 0;
+    this.isCalculated = false;
+
+    // 2. Очистка инпутов и селектов
+    const screens = document.querySelectorAll(".screen");
+
+    screens.forEach((screen, index) => {
+      const select = screen.querySelector("select");
+      const input = screen.querySelector("input");
+
+      select.selectedIndex = 0;
+      input.value = "";
+
+      // разблокировка
+      select.disabled = false;
+      input.disabled = false;
+
+      // удаляем все кроме первого блока
+      if (index !== 0) {
+        screen.remove();
+      }
+    });
+
+    // 3. Очистка чекбоксов и полей услуг
+    otherItemsPercent.forEach((item) => {
+      item.querySelector("input[type=checkbox]").checked = false;
+      item.querySelector("input[type=text]").value = "";
+    });
+
+    otherItemsNumber.forEach((item) => {
+      item.querySelector("input[type=checkbox]").checked = false;
+      item.querySelector("input[type=text]").value = "";
+    });
+
+    // 4. Сброс range
+    this.rollback = 10;
+    inputRange.value = 10;
+    inputRangeValue.textContent = 10;
+
+    // 5. Очистка результатов
+    total.value = "";
+    totalCount.value = "";
+    totalCountOther.value = "";
+    fullTotalCount.value = "";
+    totalCountRollback.value = "";
+
+    // 6. Возвращаем кнопки
+    startBtn.style.display = "block";
+    resetBtn.style.display = "none";
   },
 };
 

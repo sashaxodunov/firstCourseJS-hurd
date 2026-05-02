@@ -40,6 +40,13 @@ const appData = {
     buttonPlus.addEventListener("click", () => this.addScreenBlock());
     inputRange.addEventListener("input", () => this.changeRollback());
     resetBtn.addEventListener("click", () => this.reset());
+
+    const cmsCheckbox = document.getElementById("cms-open");
+    const cmsBlock = document.querySelector(".hidden-cms-variants");
+
+    cmsCheckbox.addEventListener("change", function () {
+      cmsBlock.style.display = this.checked ? "flex" : "none";
+    });
   },
 
   addTitle: function () {

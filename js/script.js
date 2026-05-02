@@ -18,7 +18,6 @@ const fullTotalCount = document.getElementsByClassName("total-input")[3];
 const totalCountRollback = document.getElementsByClassName("total-input")[4];
 
 let screens = document.querySelectorAll(".screen");
-//
 
 const appData = {
   title: "",
@@ -33,15 +32,19 @@ const appData = {
   servicesPercent: {},
   servicesNumber: {},
   isCalculated: false,
+
   init: function () {
     appData.addTitle();
 
     startBtn.addEventListener("click", appData.start);
     buttonPlus.addEventListener("click", appData.addScreenBlock);
+    inputRange.addEventListener("input", appData.changeRollback);
   },
+
   addTitle: function () {
     document.title = title.textContent;
   },
+
   start: function () {
     if (!appData.checkInputs()) {
       alert("Заполните все экраны корректно");
@@ -51,32 +54,28 @@ const appData = {
     appData.addScreens();
     appData.addServices();
     appData.addPrices();
-    // appData.getServicePercentPrices();
     appData.isCalculated = true;
-    // appData.logger();
+
     console.log(appData);
     appData.showResult();
   },
 
   showResult: function () {
     total.value = appData.screenPrice;
-
     totalCount.value = appData.totalScreensCount;
-
     totalCountOther.value =
       appData.servicePricesPercent + appData.servicePricesNumber;
-
     fullTotalCount.value = appData.fullPrice;
-
     totalCountRollback.value = appData.servicePercentPrice;
   },
 
-  addScreens: function (screen, index) {
+  addScreens: function () {
     screens = document.querySelectorAll(".screen");
 
-    screens.forEach(function (screen, index) {
+    screens.forEach((screen, index) => {
       const select = screen.querySelector("select");
       const input = screen.querySelector("input");
+
       const selectName = select.options[select.selectedIndex].textContent;
       const count = +input.value;
 
@@ -87,11 +86,10 @@ const appData = {
         count: count,
       });
     });
-    console.log(appData.screens);
   },
 
   addServices: function () {
-    otherItemsPercent.forEach(function (item) {
+    otherItemsPercent.forEach((item) => {
       const check = item.querySelector("input[type=checkbox]");
       const label = item.querySelector("label");
       const input = item.querySelector("input[type=text]");
@@ -101,7 +99,7 @@ const appData = {
       }
     });
 
-    otherItemsNumber.forEach(function (item) {
+    otherItemsNumber.forEach((item) => {
       const check = item.querySelector("input[type=checkbox]");
       const label = item.querySelector("label");
       const input = item.querySelector("input[type=text]");
@@ -112,26 +110,16 @@ const appData = {
     });
   },
 
-  init: function () {
-    appData.addTitle();
-
-    startBtn.addEventListener("click", appData.start);
-    buttonPlus.addEventListener("click", appData.addScreenBlock);
-
-    inputRange.addEventListener("input", appData.changeRollback);
-  },
-
   addScreenBlock: function () {
     const cloneScreen = screens[0].cloneNode(true);
-
     screens[screens.length - 1].after(cloneScreen);
   },
 
   changeRollback: function () {
     const value = inputRange.value;
 
-    inputRangeValue.textContent = value; // обновляем span
-    appData.rollback = +value; // сохраняем в объект (число!)
+    inputRangeValue.textContent = value;
+    appData.rollback = +value;
 
     if (appData.isCalculated) {
       appData.servicePercentPrice =
@@ -139,18 +127,6 @@ const appData = {
 
       totalCountRollback.value = appData.servicePercentPrice;
     }
-  },
-
-  getUniqueServiceName: function (name) {
-    let newName = name;
-    let i = 1;
-
-    while (appData.services.hasOwnProperty(newName)) {
-      newName = `${name}_${i}`;
-      i++;
-    }
-
-    return newName;
   },
 
   addPrices: function () {
@@ -171,7 +147,7 @@ const appData = {
     }
 
     appData.fullPrice =
-      +appData.screenPrice +
+      appData.screenPrice +
       appData.servicePricesNumber +
       appData.servicePricesPercent;
 
@@ -190,7 +166,6 @@ const appData = {
       const select = screen.querySelector("select");
       const input = screen.querySelector("input");
 
-      // если не выбран тип или не введено количество
       if (
         select.value === "" ||
         input.value.trim() === "" ||
@@ -201,12 +176,6 @@ const appData = {
     });
 
     return isValid;
-  },
-
-  logger: function () {
-    console.log(appData.fullPrice);
-    console.log(appData.servicePercentPrice);
-    console.log(appData.screens);
   },
 };
 

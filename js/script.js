@@ -47,6 +47,25 @@ const appData = {
     cmsCheckbox.addEventListener("change", function () {
       cmsBlock.style.display = this.checked ? "flex" : "none";
     });
+
+    const cmsBlock = document.querySelector(".hidden-cms-variants");
+
+    cmsBlock.addEventListener("change", function (e) {
+      if (e.target.tagName === "SELECT") {
+        const currentSelect = e.target;
+
+        // ищем ближайший контейнер (если структура повторяется)
+        const parent = currentSelect.closest(".hidden-cms-variants");
+
+        const inputBlock = parent.querySelector(".main-controls__input");
+
+        if (currentSelect.value === "other") {
+          inputBlock.style.display = "flex";
+        } else {
+          inputBlock.style.display = "none";
+        }
+      }
+    });
   },
 
   addTitle: function () {
